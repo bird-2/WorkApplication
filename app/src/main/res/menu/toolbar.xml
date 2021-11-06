@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+  <item
+      android:id="@+id/backup"
+      android:icon="@drawable/back"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:title="Backup"
+      app:showAsAction="always"/>
+    <item
+        android:id="@+id/user"
+        android:icon="@drawable/user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:title="user"
+        app:showAsAction="ifRoom"/>
+
+</menu>
