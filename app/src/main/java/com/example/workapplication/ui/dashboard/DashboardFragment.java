@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,7 +13,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.baidu.mapapi.BMapManager;
+import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.MapView;
+import com.baidu.platform.comapi.map.MapController;
 import com.example.workapplication.R;
 import com.example.workapplication.databinding.FragmentDashboardBinding;
 
@@ -23,14 +27,19 @@ public class DashboardFragment extends Fragment {
     private MapView mMapView = null;
     private FragmentDashboardBinding binding;
 
+
+
+
+    private MapController mMapController = null;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+
+
 
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         mMapView=root.findViewById(R.id.bmapView);
-
-
         return root;
     }
 

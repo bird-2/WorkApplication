@@ -1,6 +1,9 @@
 package com.example.workapplication;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.widget.Toolbar;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -17,6 +20,8 @@ private ActivityMainBinding binding;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
      binding = ActivityMainBinding.inflate(getLayoutInflater());
      setContentView(binding.getRoot());
 
@@ -29,8 +34,9 @@ private ActivityMainBinding binding;
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-        //妹妹是大笨蛋哦哦哦哦哦
-        //哥哥也是大笨蛋哦
     }
-
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.toolbar,menu);
+        return true;
+    }
 }
