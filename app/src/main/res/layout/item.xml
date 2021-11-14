@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#E1FFFF">
+<!--    android:adjustViewBounds="true"-->
+<!--    android:scaleType="centerCrop">-->
+<!--    :设置View控件的宽高比等于图片的宽高比（图片不失真）对图片进行等比例放缩。-->
+<!--    android:scaleType="centerCrop">-->
+<!--    ：设置控件的中心与图片的中心一致，对图片进行等比例放缩，直到填充满view控件。-->
+<!--       一般这两个属性搭配使用-->
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        tools:srcCompat="@tools:sample/avatars" />
+
+</LinearLayout>

@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
   <item
-      android:id="@+id/backup"
-      android:icon="@drawable/back"
+      android:id="@+id/user"
+      android:icon="@drawable/icon1"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:title="Backup"
+      android:title="用户"
       app:showAsAction="always"/>
     <item
-        android:id="@+id/user"
-        android:icon="@drawable/icon1"
+        android:id="@+id/send"
+        android:icon="@drawable/icon4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:title="user"
+        android:title="发送"
         app:showAsAction="ifRoom"/>
 
 </menu>

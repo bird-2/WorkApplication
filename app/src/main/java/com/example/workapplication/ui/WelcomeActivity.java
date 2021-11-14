@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.workapplication.MainActivity;
 import com.example.workapplication.R;
+import com.example.workapplication.Login;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -39,7 +40,7 @@ public class WelcomeActivity extends Activity {
             @Override
             public void run() {
                 if (!isClick){
-                    Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+                    Intent intent = new Intent(WelcomeActivity.this, Login.class);
                     startActivity(intent);
                     finish();
                 }
@@ -52,7 +53,7 @@ public class WelcomeActivity extends Activity {
             @Override
             public void onClick(View view) {
                 isClick=true;
-                Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, Login.class);  //页面跳转到登录界面
                 startActivity(intent);
                 finish();
                 }
@@ -68,7 +69,10 @@ public class WelcomeActivity extends Activity {
                     if (count>0){
                         textView.setText("跳过"+count+"");
                         count-=1;
+                    }else{
+                        timer.cancel();
                     }
+
                 }
             });
         }
