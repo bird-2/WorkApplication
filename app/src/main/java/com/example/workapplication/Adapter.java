@@ -22,7 +22,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myviewholder> {
     private List<Photo> list;
     private View inflater;
 
-   private Context context;
+    private Context context;
 
 
     public Adapter(List<Photo> peakyList) {
@@ -31,7 +31,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myviewholder> {
 
     @Override
     public Adapter.myviewholder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        inflater = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item,viewGroup,false);
+        inflater = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item, viewGroup, false);
         myviewholder myviewholder = new myviewholder(inflater);
         return myviewholder;
     }
@@ -47,9 +47,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myviewholder> {
         return list.size();
     }
 
-    class myviewholder extends RecyclerView.ViewHolder{
+    class myviewholder extends RecyclerView.ViewHolder {
         View photoView;
         ImageView photoImage;
+
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             photoView = itemView;
