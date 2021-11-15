@@ -1,9 +1,15 @@
 package com.example.workapplication;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.provider.ContactsContract;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -11,8 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.baidu.location.b.l;
 import com.bumptech.glide.Glide;
 
+import java.io.File;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +47,21 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myviewholder> {
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
         Photo photo = list.get(position);
-        holder.photoImage.setImageResource(photo.getImageid());
+        if (photo.isStorage) {
+
+            String picPath = photo.getName();
+            File file = new File(picPath);
+            if (file.exists()) {
+
+                Bitmap bm = BitmapFactory.decodeFile(picPath);
+
+                holder.photoImage.setImageBitmap(bm);
+
+            }
+        } else {
+            holder.photoImage.setImageResource(photo.getImageid());
+        }
+
     }
 
     @Override
@@ -56,5 +78,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myviewholder> {
             photoView = itemView;
             photoImage = itemView.findViewById(R.id.imageView);
         }
+    }
+
+    public void addData(String path, String words) {
+        Photo photo = new Photo(path, R.drawable.j, true);
+        list.add(0, photo);
+        notifyItemInserted(0);
     }
 }

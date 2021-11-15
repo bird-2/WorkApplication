@@ -17,20 +17,25 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.example.workapplication.databinding.ActivityMainBinding;
+import com.example.workapplication.databinding.FragmentHomeBinding;
 import com.example.workapplication.ui.WelcomeActivity;
 import com.example.workapplication.ui.home.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.example.workapplication.databinding.ActivityMainBinding;
 
 import java.net.URI;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -83,10 +87,35 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == 7 && null != data) {
                 String path = data.getStringExtra("path");
-                String works = data.getStringExtra("works");
-                Log.e("**res**", path + "|" + works);
+                String words = data.getStringExtra("words");
+                Log.e("**res**", path + "|" + words);
+                HomeFragment frg = (HomeFragment) getFragment(HomeFragment.class);
+                frg.MessageSender(words,path);
+                if (frg != null) {
+                    Log.e("SSDDDTTT", frg.toString());
+                } else {
+                    Log.e("SSDDDTTT", "null");
+                }
             }
         }
+    }
+
+    public Fragment getFragment(Class<?> clazz) {
+        List<Fragment> fragments = getSupportFragmentManager().getFragments();
+        if (fragments != null && fragments.size() > 0) {
+            NavHostFragment navHostFragment = (NavHostFragment) fragments.get(0);
+            List<Fragment> childfragments = navHostFragment.getChildFragmentManager().getFragments();
+            if (childfragments != null && childfragments.size() > 0) {
+                for (int j = 0; j < childfragments.size(); j++) {
+                    Fragment fragment = childfragments.get(j);
+                    if (fragment.getClass().isAssignableFrom(clazz)) {
+                        Log.i("FindFragment", "getFragment1: " + fragment);
+                        return fragment;
+                    }
+                }
+            }
+        }
+        return null;
     }
 }
 

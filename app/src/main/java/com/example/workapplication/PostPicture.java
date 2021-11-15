@@ -1,7 +1,11 @@
 package com.example.workapplication;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -9,10 +13,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.workapplication.ui.WelcomeActivity;
+
+import java.io.File;
 
 public class PostPicture extends AppCompatActivity {
     private Button choose;
@@ -41,7 +50,7 @@ public class PostPicture extends AppCompatActivity {
                 words = editText.getText().toString();
                 Intent intent = getIntent();
                 intent.putExtra("path", picPath);
-                intent.putExtra("works", words);
+                intent.putExtra("words", words);
                 setResult(RESULT_OK, intent);
                 finish();
             }
@@ -65,8 +74,27 @@ public class PostPicture extends AppCompatActivity {
                 cursor.close();
                 picPath = picturePath;
 
-                //---------------------妹妹完成--------------------------------
-                //将获取的图片显示出来(图片为地址)
+                File file = new File(picPath);
+
+                ImageView img = (ImageView) findViewById(R.id.img);
+
+                String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+                int REQUEST_CODE = 10001;
+
+                for (String permission : permissions) {
+                    //  GRANTED---授权  DINIED---拒绝
+                    if (ContextCompat.checkSelfPermission(getApplicationContext(), permission) == PackageManager.PERMISSION_DENIED) {
+                        ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE);
+                    }
+                }
+                if (file.exists()) {
+
+                    Bitmap bm = BitmapFactory.decodeFile(picPath);
+
+                    img.setImageBitmap(bm);
+
+                }
             }
         }
     }
